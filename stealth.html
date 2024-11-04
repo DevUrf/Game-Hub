@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stealth Games - Game On! 🎮</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow-y: auto;
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            scroll-behavior: smooth;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.5s, color 0.5s;
+        }
+        h1 {
+            text-align: center;
+            color: #00796b;
+            font-size: 2.5em;
+            margin: 20px 0;
+        }
+        .game-list {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .game-item {
+            background-color: #ffffff;
+            border: 1px solid #00796b;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .game-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #555;
+        }
+        /* Dark Mode Styles */
+        body.dark {
+            background: linear-gradient(135deg, #263238 0%, #37474f 100%);
+            color: #e0e0e0;
+        }
+        .dark .game-item {
+            background-color: #424242;
+            border: 1px solid #90a4ae;
+            color: #e0e0e0;
+        }
+        /* Home Button */
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #00796b;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .home-button:hover {
+            background-color: #005f51;
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle("dark");
+        }
+    </script>
+</head>
+<body>
+
+<button class="home-button" onclick="window.location.href='index.html'">🏠 Home</button>
+
+<h1>Stealth Games</h1>
+
+<div class="game-list">
+    <div class="game-item">Stealth Game 1: Metal Gear Solid V: The Phantom Pain 🐍</div>
+    <div class="game-item">Stealth Game 2: Assassin's Creed Odyssey 🗡️</div>
+    <div class="game-item">Stealth Game 3: Dishonored 2 🦸‍♂️</div>
+    <div class="game-item">Stealth Game 4: Hitman 3 🎩</div>
+    <div class="game-item">Stealth Game 5: Thief 🏴‍♂️</div>
+    <div class="game-item">Stealth Game 6: Splinter Cell: Blacklist 👤</div>
+    <div class="game-item">Stealth Game 7: Mark of the Ninja 🐉</div>
+    <div class="game-item">Stealth Game 8: Ghost of Tsushima 🏯</div>
+    <div class="game-item">Stealth Game 9: Styx: Master of Shadows 🕵️‍♂️</div>
+    <div class="game-item">Stealth Game 10: Assassin's Creed IV: Black Flag 🏴‍☠️</div>
+    <div class="game-item">Stealth Game 11: Deus Ex: Human Revolution 🧬</div>
+    <div class="game-item">Stealth Game 12: The Last of Us Part II 🎮</div>
+    <div class="game-item">Stealth Game 13: The Blackwell Legacy 📖</div>
+    <div class="game-item">Stealth Game 14: The Invisible Hours ⏳</div>
+    <div class="game-item">Stealth Game 15: Mark of the Ninja Remastered 🎮</div>
+    <div class="game-item">Stealth Game 16: Hitman: Absolution 🎯</div>
+    <div class="game-item">Stealth Game 17: Tenchu: Stealth Assassins 🥷</div>
+    <div class="game-item">Stealth Game 18: Metal Gear Solid 2: Sons of Liberty 🎖️</div>
+    <div class="game-item">Stealth Game 19: Assassins Creed: Syndicate 🏙️</div>
+    <div class="game-item">Stealth Game 20: UnMetal 🦸‍♂️</div>
+    <div class="game-item">Stealth Game 21: The Shrouded Isle 🌑</div>
+    <div class="game-item">Stealth Game 22: A Plague Tale: Innocence 🐀</div>
+    <div class="game-item">Stealth Game 23: The Last Guardian 🦅</div>
+    <div class="game-item">Stealth Game 24: The Sinking City 🌊</div>
+    <div class="game-item">Stealth Game 25: Hello Neighbor 👻</div>
+</div>
+
+<div class="footer">
+    <p>Join our community and stay updated with the latest games and offers! 🎉</p>
+</div>
+
+</body>
+</html>
