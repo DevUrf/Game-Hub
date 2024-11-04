@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to Our Newsletter 📬</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #e0f7fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            perspective: 1000px;
+        }
+        h1 {
+            color: #00796b;
+            font-size: 2.5em;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .description {
+            text-align: center;
+            margin: 20px;
+            font-size: 1.2em;
+            animation: slideIn 1.5s ease-in-out;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bounceIn 1s ease-in-out;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        input[type="email"] {
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #00796b;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #005f51;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Subscribe to Our Newsletter 📬</h1>
+
+<div class="description">
+    <p>Stay updated with the latest games, news, and exclusive offers! 🎮✨</p>
+    <p>Join our gaming community and never miss out on exciting updates! 🚀</p>
+</div>
+
+<div class="form-container">
+    <input type="email" placeholder="Enter your email" required>
+    <button type="submit">Subscribe</button>
+</div>
+
+<div class="footer">
+    <p>We respect your privacy. Unsubscribe at any time. 🔒</p>
+</div>
+
+</body>
+</html>
