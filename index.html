@@ -1,1 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game On! 🎮</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow-y: auto;
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            scroll-behavior: smooth;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            color: #00796b;
+            font-size: 3em;
+            margin: 20px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 4px solid #00796b;
+            animation: typing 4s steps(30, end) forwards, blink-caret 0.75s step-end infinite;
+            position: relative;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #00796b; }
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
+            padding: 20px;
+        }
+        .button {
+            background-color: #009688;
+            border: none;
+            border-radius: 12px;
+            padding: 20px;
+            width: 250px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1.2em;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-decoration: none; /* Remove underline */
+        }
+        .button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        .button:active {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .featured-games {
+            margin: 40px 0;
+            text-align: center;
+            width: 100%;
+        }
+        .game-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .game-item {
+            background-color: #ffffff;
+            border: 1px solid #00796b;
+            border-radius: 12px;
+            padding: 15px;
+            width: 200px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .game-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #555;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 12px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #00796b;
+            border-radius: 5px;
+        }
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            display: none;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+        #backToTop:hover {
+            background-color: #005f51;
+        }
+    </style>
+    <script>
+        function hideCursor() {
+            const cursor = document.querySelector('.cursor');
+            if (cursor) {
+                cursor.style.display = 'none';
+            }
+        }
 
+        function startTypingAnimation() {
+            const title = document.querySelector('h1');
+            title.style.animation = 'typing 4s steps(30, end) forwards';
+            setTimeout(hideCursor, 4000);
+        }
+
+        window.onload = startTypingAnimation;
+
+        // Show modal for sign in/sign up
+        function showModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        // Close the modal
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        // Back to Top button functionality
+        window.onscroll = function() {
+            const backToTopButton = document.getElementById("backToTop");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
+</head>
+<body>
+
+<h1>Game On! 🎮✨ <span class="cursor" style="border-right: 4px solid #00796b; display: inline-block; width: 10px; height: 1em; animation: blink-caret 0.75s step-end infinite;"></span></h1>
+
+<div class="container">
+    <a href="arcade.html" class="button">🎮 Arcade Games 🎉</a>
+    <a href="board.html" class="button">♟️ Board Games 🏆</a>
+    <a href="card.html" class="button">🃏 Card Games 🥳</a>
+    <a href="video.html" class="button">📺 Video Games 🎊</a>
+    <a href="puzzle.html" class="button">🧩 Puzzle Games 🧠</a>
+    <a href="sports.html" class="button">⚽ Sports Games 🥇</a>
+    <a href="racing.html" class="button">🏎️ Racing Games 🚗</a>
+    <a href="simulation.html" class="button">🛠️ Simulation Games 🎮</a>
+    <a href="adventure.html" class="button">🗺️ Adventure Games 🏕️</a>
+    <a href="strategy.html" class="button">🧠 Strategy Games 📈</a>
+    <a href="horror.html" class="button">👻 Horror Games 😱</a>
+    <a href="rpg.html" class="button">🧙‍♂️ RPG Games ⚔️</a>
+    <a href="fighting.html" class="button">🥊 Fighting Games 💪</a>
+    <a href="platformers.html" class="button">🏃‍♂️ Platformers 🌟</a>
+    <a href="mmorpg.html" class="button">🌍 MMORPG Games 🏰</a>
+    <a href="educational.html" class="button">📚 Educational Games 🎓</a>
+    <a href="stealth.html" class="button">🕵️ Stealth Games 🥷</a>
+    <a href="survival.html" class="button">🏕️ Survival Games 🛠️</a>
+    <a href="rhythm.html" class="button">🎶 Rhythm Games 🎤</a>
+    <button class="button" onclick="showModal()">📰 Join Newsletter ✉️</button>
+    <button class="button" onclick="showModal()">Sign In / Sign Up 🔑</button>
+</div>
+
+<div class="featured-games">
+    <h2>Featured Games 🌟</h2>
+    <div class="game-list">
+        <div class="game-item">Game 1: Tetris 🏆</div>
+        <div class="game-item">Game 2: Poker 🧩</div>
+        <div class="game-item">Game 3: Racing Legends 🚗</div>
+        <div class="game-item">Game 4: Strategy King ♟️</div>
+        <div class="game-item">Game 5: Horror Night 👻</div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Join our community and stay updated with the latest games and offers! 🎉</p>
+</div>
+
+<!-- The Modal for Sign In/Sign Up -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Sign In / Sign Up</h2>
+        <input type="text" placeholder="Username" required>
+        <input type="password" placeholder="Password" required>
+        <input type="email" placeholder="Email" required>
+        <button class="button">Submit</button>
+    </div>
+</div>
+
+<!-- Back to Top Button -->
+<button id="backToTop" onclick="scrollToTop()">↑</button>
+
+</body>
+</html>
