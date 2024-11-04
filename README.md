@@ -22,9 +22,12 @@ Welcome to **Game Hub**! 🎉 Your one-stop destination for playing a variety of
   - Google T-Rex Runner
   - Wordle
 
-#🏭 Building Process
+# 🏭 Building Process
+
   ☞ **These Are Almost All found in public Github Archives.**
+  
   ☞ **To Any That i didn't Code i do not claim any rights to the code.** 
+
 ## 🚀 Getting Started
 
 To get started with Game Hub, simply clone the repository and open the `index.html` file in your favorite web browser!
