@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Donkey Kong</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <script>
+        // Get the canvas element
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Game objects
+        const player = {
+            x: 50,
+            y: 350,
+            width: 20,
+            height: 20,
+            speed: 5,
+            jumpStrength: 10,
+            yVelocity: 0
+        };
+
+        const platforms = [
+            {x: 0, y: 380, width: 400, height: 20},
+            {x: 100, y: 300, width: 200, height: 20},
+            {x: 0, y: 220, width: 300, height: 20},
+            {x: 100, y: 140, width: 200, height: 20},
+        ];
+
+        const enemy = {
+            x: 350,
+            y: 100,
+            width: 30,
+            height: 30
+        };
+
+        const barrel = {
+            x: enemy.x,
+            y: enemy.y,
+            radius: 10,
+            speed: 2
+        };
+
+        let score = 0;
+        let lives = 3;
+
+        // Game loop
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Update game state
+        function update() {
+            // Player movement
+            if (keys.ArrowLeft && player.x > 0) player.x -= player.speed;
+            if (keys.ArrowRight && player.x < canvas.width - player.width) player.x += player.speed;
+
+            // Jumping
+            if (keys.ArrowUp && player.yVelocity === 0) {
+                player.yVelocity = -player.jumpStrength;
+            }
+
+            // Apply gravity
+            player.yVelocity += 0.5;
+            player.y += player.yVelocity;
+
+            // Platform collision
+            for (let platform of platforms) {
+                if (player.y + player.height > platform.y &&
+                    player.y < platform.y + platform.height &&
+                    player.x < platform.x + platform.width &&
+                    player.x + player.width > platform.x) {
+                    player.y = platform.y - player.height;
+                    player.yVelocity = 0;
+                }
+            }
+
+            // Barrel movement
+            barrel.y += barrel.speed;
+            if (barrel.y > canvas.height) {
+                barrel.y = enemy.y;
+                barrel.x = enemy.x;
+                score++;
+            }
+
+            // Barrel collision
+            if (circleRectCollision(barrel, player)) {
+                lives--;
+                if (lives <= 0) {
+                    alert("Game Over! Your score: " + score);
+                    resetGame();
+                } else {
+                    resetPlayerPosition();
+                }
+            }
+        }
+
+        // Draw game objects
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw platforms
+            ctx.fillStyle = 'brown';
+            for (let platform of platforms) {
+                ctx.fillRect(platform.x, platform.y, platform.width, platform.height);
+            }
+
+            // Draw player
+            ctx.fillStyle = 'blue';
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+
+            // Draw enemy
+            ctx.fillStyle = 'red';
+            ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+
+            // Draw barrel
+            ctx.beginPath();
+            ctx.arc(barrel.x, barrel.y, barrel.radius, 0, Math.PI * 2);
+            ctx.fillStyle = 'orange';
+            ctx.fill();
+
+            // Draw score and lives
+            ctx.fillStyle = 'black';
+            ctx.font = '20px Arial';
+            ctx.fillText('Score: ' + score, 10, 30);
+            ctx.fillText('Lives: ' + lives, 300, 30);
+        }
+
+        // Keyboard input
+        const keys = {};
+        document.addEventListener('keydown', (e) => keys[e.code] = true);
+        document.addEventListener('keyup', (e) => keys[e.code] = false);
+
+        // Collision detection
+        function circleRectCollision(circle, rect) {
+            let distX = Math.abs(circle.x - rect.x - rect.width / 2);
+            let distY = Math.abs(circle.y - rect.y - rect.height / 2);
+
+            if (distX > (rect.width / 2 + circle.radius)) return false;
+            if (distY > (rect.height / 2 + circle.radius)) return false;
+
+            if (distX <= (rect.width / 2)) return true;
+            if (distY <= (rect.height / 2)) return true;
+
+            let dx = distX - rect.width / 2;
+            let dy = distY - rect.height / 2;
+            return (dx * dx + dy * dy <= (circle.radius * circle.radius));
+        }
+
+        // Reset game
+        function resetGame() {
+            score = 0;
+            lives = 3;
+            resetPlayerPosition();
+        }
+
+        // Reset player position
+        function resetPlayerPosition() {
+            player.x = 50;
+            player.y = 350;
+            player.yVelocity = 0;
+        }
+
+        // Start the game
+        gameLoop();
+    </script>
+</body>
+</html>
